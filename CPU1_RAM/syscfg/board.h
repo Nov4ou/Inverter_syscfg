@@ -122,6 +122,11 @@ extern "C"
 #define myADCA_SAMPLE_WINDOW_SOC0 100
 #define myADCA_TRIGGER_SOURCE_SOC0 ADC_TRIGGER_EPWM1_SOCA
 #define myADCA_CHANNEL_SOC0 ADC_CH_ADCIN0
+#define myADCA_SOC1 ADC_SOC_NUMBER1
+#define myADCA_FORCE_SOC1 ADC_FORCE_SOC1
+#define myADCA_SAMPLE_WINDOW_SOC1 100
+#define myADCA_TRIGGER_SOURCE_SOC1 ADC_TRIGGER_EPWM1_SOCA
+#define myADCA_CHANNEL_SOC1 ADC_CH_ADCIN1
 void myADCA_init();
 
 
@@ -156,7 +161,7 @@ void myCPUTIMER0_init();
 #define myEPWM1_DBFED 0
 #define myEPWM1_TZA_ACTION EPWM_TZ_ACTION_HIGH_Z
 #define myEPWM1_TZB_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define myEPWM1_INTERRUPT_SOURCE EPWM_INT_TBCTR_DISABLED
+#define myEPWM1_INTERRUPT_SOURCE EPWM_INT_TBCTR_ZERO_OR_PERIOD
 #define myEPWM5_BASE EPWM5_BASE
 #define myEPWM5_TBPRD 5000
 #define myEPWM5_COUNTER_MODE EPWM_COUNTER_MODE_UP_DOWN
@@ -198,10 +203,10 @@ void LED_init();
 //
 //*****************************************************************************
 
-// Interrupt Settings for INT_myADCA_1
-#define INT_myADCA_1 INT_ADCA1
-#define INT_myADCA_1_INTERRUPT_ACK_GROUP INTERRUPT_ACK_GROUP1
-extern __interrupt void INT_myADCA_1_ISR(void);
+// Interrupt Settings for INT_myADCA_2
+#define INT_myADCA_2 INT_ADCA2
+#define INT_myADCA_2_INTERRUPT_ACK_GROUP INTERRUPT_ACK_GROUP10
+extern __interrupt void INT_myADCA_2_ISR(void);
 
 // Interrupt Settings for INT_myCPUTIMER0
 #define INT_myCPUTIMER0 INT_TIMER0

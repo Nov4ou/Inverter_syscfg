@@ -59,68 +59,52 @@ extern "C"
 //*****************************************************************************
 
 //
-// EPWM5 -> inverter1 Pinmux
-//
-//
-// EPWM5_A - GPIO Settings
-//
-#define GPIO_PIN_EPWM5_A 16
-#define inverter1_EPWMA_GPIO 16
-#define inverter1_EPWMA_PIN_CONFIG GPIO_16_EPWM5_A
-//
-// EPWM5_B - GPIO Settings
-//
-#define GPIO_PIN_EPWM5_B 17
-#define inverter1_EPWMB_GPIO 17
-#define inverter1_EPWMB_PIN_CONFIG GPIO_17_EPWM5_B
-
-//
-// EPWM6 -> inverter2 Pinmux
-//
-//
-// EPWM6_A - GPIO Settings
-//
-#define GPIO_PIN_EPWM6_A 10
-#define inverter2_EPWMA_GPIO 10
-#define inverter2_EPWMA_PIN_CONFIG GPIO_10_EPWM6_A
-//
-// EPWM6_B - GPIO Settings
-//
-#define GPIO_PIN_EPWM6_B 11
-#define inverter2_EPWMB_GPIO 11
-#define inverter2_EPWMB_PIN_CONFIG GPIO_11_EPWM6_B
-
-//
-// EPWM1 -> Sync_adc Pinmux
+// EPWM1 -> myEPWM1 Pinmux
 //
 //
 // EPWM1_A - GPIO Settings
 //
 #define GPIO_PIN_EPWM1_A 0
-#define Sync_adc_EPWMA_GPIO 0
-#define Sync_adc_EPWMA_PIN_CONFIG GPIO_0_EPWM1_A
+#define myEPWM1_EPWMA_GPIO 0
+#define myEPWM1_EPWMA_PIN_CONFIG GPIO_0_EPWM1_A
 //
 // EPWM1_B - GPIO Settings
 //
 #define GPIO_PIN_EPWM1_B 1
-#define Sync_adc_EPWMB_GPIO 1
-#define Sync_adc_EPWMB_PIN_CONFIG GPIO_1_EPWM1_B
+#define myEPWM1_EPWMB_GPIO 1
+#define myEPWM1_EPWMB_PIN_CONFIG GPIO_1_EPWM1_B
 
 //
-// EPWM2 -> LPF_Graph Pinmux
+// EPWM5 -> myEPWM5 Pinmux
 //
 //
-// EPWM2_A - GPIO Settings
+// EPWM5_A - GPIO Settings
 //
-#define GPIO_PIN_EPWM2_A 2
-#define LPF_Graph_EPWMA_GPIO 2
-#define LPF_Graph_EPWMA_PIN_CONFIG GPIO_2_EPWM2_A
+#define GPIO_PIN_EPWM5_A 16
+#define myEPWM5_EPWMA_GPIO 16
+#define myEPWM5_EPWMA_PIN_CONFIG GPIO_16_EPWM5_A
 //
-// EPWM2_B - GPIO Settings
+// EPWM5_B - GPIO Settings
 //
-#define GPIO_PIN_EPWM2_B 3
-#define LPF_Graph_EPWMB_GPIO 3
-#define LPF_Graph_EPWMB_PIN_CONFIG GPIO_3_EPWM2_B
+#define GPIO_PIN_EPWM5_B 17
+#define myEPWM5_EPWMB_GPIO 17
+#define myEPWM5_EPWMB_PIN_CONFIG GPIO_17_EPWM5_B
+
+//
+// EPWM6 -> myEPWM6 Pinmux
+//
+//
+// EPWM6_A - GPIO Settings
+//
+#define GPIO_PIN_EPWM6_A 10
+#define myEPWM6_EPWMA_GPIO 10
+#define myEPWM6_EPWMA_PIN_CONFIG GPIO_10_EPWM6_A
+//
+// EPWM6_B - GPIO Settings
+//
+#define GPIO_PIN_EPWM6_B 11
+#define myEPWM6_EPWMB_GPIO 11
+#define myEPWM6_EPWMB_PIN_CONFIG GPIO_11_EPWM6_B
 //
 // GPIO32 - GPIO Settings
 //
@@ -131,14 +115,19 @@ extern "C"
 // ADC Configurations
 //
 //*****************************************************************************
-#define current_adc_BASE ADCA_BASE
-#define current_adc_RESULT_BASE ADCARESULT_BASE
-#define current_adc_SOC0 ADC_SOC_NUMBER0
-#define current_adc_FORCE_SOC0 ADC_FORCE_SOC0
-#define current_adc_SAMPLE_WINDOW_SOC0 100
-#define current_adc_TRIGGER_SOURCE_SOC0 ADC_TRIGGER_EPWM1_SOCA
-#define current_adc_CHANNEL_SOC0 ADC_CH_ADCIN0
-void current_adc_init();
+#define myADCA_BASE ADCA_BASE
+#define myADCA_RESULT_BASE ADCARESULT_BASE
+#define myADCA_SOC0 ADC_SOC_NUMBER0
+#define myADCA_FORCE_SOC0 ADC_FORCE_SOC0
+#define myADCA_SAMPLE_WINDOW_SOC0 100
+#define myADCA_TRIGGER_SOURCE_SOC0 ADC_TRIGGER_EPWM1_SOCA
+#define myADCA_CHANNEL_SOC0 ADC_CH_ADCIN0
+#define myADCA_SOC1 ADC_SOC_NUMBER1
+#define myADCA_FORCE_SOC1 ADC_FORCE_SOC1
+#define myADCA_SAMPLE_WINDOW_SOC1 100
+#define myADCA_TRIGGER_SOURCE_SOC1 ADC_TRIGGER_EPWM1_SOCA
+#define myADCA_CHANNEL_SOC1 ADC_CH_ADCIN1
+void myADCA_init();
 
 
 //*****************************************************************************
@@ -160,58 +149,45 @@ void myCPUTIMER0_init();
 // EPWM Configurations
 //
 //*****************************************************************************
-#define inverter1_BASE EPWM5_BASE
-#define inverter1_TBPRD 5000
-#define inverter1_COUNTER_MODE EPWM_COUNTER_MODE_UP_DOWN
-#define inverter1_TBPHS 0
-#define inverter1_CMPA 2500
-#define inverter1_CMPB 0
-#define inverter1_CMPC 0
-#define inverter1_CMPD 0
-#define inverter1_DBRED 10
-#define inverter1_DBFED 10
-#define inverter1_TZA_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define inverter1_TZB_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define inverter1_INTERRUPT_SOURCE EPWM_INT_TBCTR_DISABLED
-#define inverter2_BASE EPWM6_BASE
-#define inverter2_TBPRD 5000
-#define inverter2_COUNTER_MODE EPWM_COUNTER_MODE_UP_DOWN
-#define inverter2_TBPHS 0
-#define inverter2_CMPA 2500
-#define inverter2_CMPB 0
-#define inverter2_CMPC 0
-#define inverter2_CMPD 0
-#define inverter2_DBRED 10
-#define inverter2_DBFED 10
-#define inverter2_TZA_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define inverter2_TZB_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define inverter2_INTERRUPT_SOURCE EPWM_INT_TBCTR_DISABLED
-#define Sync_adc_BASE EPWM1_BASE
-#define Sync_adc_TBPRD 5000
-#define Sync_adc_COUNTER_MODE EPWM_COUNTER_MODE_UP_DOWN
-#define Sync_adc_TBPHS 0
-#define Sync_adc_CMPA 2500
-#define Sync_adc_CMPB 0
-#define Sync_adc_CMPC 0
-#define Sync_adc_CMPD 0
-#define Sync_adc_DBRED 0
-#define Sync_adc_DBFED 0
-#define Sync_adc_TZA_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define Sync_adc_TZB_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define Sync_adc_INTERRUPT_SOURCE EPWM_INT_TBCTR_DISABLED
-#define LPF_Graph_BASE EPWM2_BASE
-#define LPF_Graph_TBPRD 5000
-#define LPF_Graph_COUNTER_MODE EPWM_COUNTER_MODE_UP_DOWN
-#define LPF_Graph_TBPHS 0
-#define LPF_Graph_CMPA 2500
-#define LPF_Graph_CMPB 0
-#define LPF_Graph_CMPC 0
-#define LPF_Graph_CMPD 0
-#define LPF_Graph_DBRED 10
-#define LPF_Graph_DBFED 10
-#define LPF_Graph_TZA_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define LPF_Graph_TZB_ACTION EPWM_TZ_ACTION_HIGH_Z
-#define LPF_Graph_INTERRUPT_SOURCE EPWM_INT_TBCTR_DISABLED
+#define myEPWM1_BASE EPWM1_BASE
+#define myEPWM1_TBPRD 5000
+#define myEPWM1_COUNTER_MODE EPWM_COUNTER_MODE_UP_DOWN
+#define myEPWM1_TBPHS 0
+#define myEPWM1_CMPA 2500
+#define myEPWM1_CMPB 0
+#define myEPWM1_CMPC 0
+#define myEPWM1_CMPD 0
+#define myEPWM1_DBRED 0
+#define myEPWM1_DBFED 0
+#define myEPWM1_TZA_ACTION EPWM_TZ_ACTION_HIGH_Z
+#define myEPWM1_TZB_ACTION EPWM_TZ_ACTION_HIGH_Z
+#define myEPWM1_INTERRUPT_SOURCE EPWM_INT_TBCTR_ZERO_OR_PERIOD
+#define myEPWM5_BASE EPWM5_BASE
+#define myEPWM5_TBPRD 5000
+#define myEPWM5_COUNTER_MODE EPWM_COUNTER_MODE_UP_DOWN
+#define myEPWM5_TBPHS 0
+#define myEPWM5_CMPA 2500
+#define myEPWM5_CMPB 0
+#define myEPWM5_CMPC 0
+#define myEPWM5_CMPD 0
+#define myEPWM5_DBRED 10
+#define myEPWM5_DBFED 10
+#define myEPWM5_TZA_ACTION EPWM_TZ_ACTION_HIGH_Z
+#define myEPWM5_TZB_ACTION EPWM_TZ_ACTION_HIGH_Z
+#define myEPWM5_INTERRUPT_SOURCE EPWM_INT_TBCTR_DISABLED
+#define myEPWM6_BASE EPWM6_BASE
+#define myEPWM6_TBPRD 5000
+#define myEPWM6_COUNTER_MODE EPWM_COUNTER_MODE_UP_DOWN
+#define myEPWM6_TBPHS 0
+#define myEPWM6_CMPA 2500
+#define myEPWM6_CMPB 0
+#define myEPWM6_CMPC 0
+#define myEPWM6_CMPD 0
+#define myEPWM6_DBRED 10
+#define myEPWM6_DBFED 10
+#define myEPWM6_TZA_ACTION EPWM_TZ_ACTION_HIGH_Z
+#define myEPWM6_TZB_ACTION EPWM_TZ_ACTION_HIGH_Z
+#define myEPWM6_INTERRUPT_SOURCE EPWM_INT_TBCTR_DISABLED
 
 //*****************************************************************************
 //
@@ -227,10 +203,10 @@ void LED_init();
 //
 //*****************************************************************************
 
-// Interrupt Settings for INT_current_adc_1
-#define INT_current_adc_1 INT_ADCA1
-#define INT_current_adc_1_INTERRUPT_ACK_GROUP INTERRUPT_ACK_GROUP1
-extern __interrupt void INT_current_adc_1_ISR(void);
+// Interrupt Settings for INT_myADCA_2
+#define INT_myADCA_2 INT_ADCA2
+#define INT_myADCA_2_INTERRUPT_ACK_GROUP INTERRUPT_ACK_GROUP10
+extern __interrupt void INT_myADCA_2_ISR(void);
 
 // Interrupt Settings for INT_myCPUTIMER0
 #define INT_myCPUTIMER0 INT_TIMER0

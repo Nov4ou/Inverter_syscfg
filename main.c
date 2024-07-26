@@ -63,13 +63,15 @@
 
 #define MAX_COMP 5000;
 
+float ref_mod_inverter = 0;
 float V_mod_inverter = 0;
 uint16_t compare1, compare2;
 #define ADC_BUF_LEN 10
-uint16_t AdcBuf[ADC_BUF_LEN];
+uint16_t AdcBuf0[ADC_BUF_LEN];
+uint16_t AdcBuf1[ADC_BUF_LEN];
 
 interrupt void INT_myCPUTIMER0_ISR();
-interrupt void INT_myADCA_1_ISR(void);
+interrupt void INT_myADCA_2_ISR(void);
 
 //
 // Main
@@ -107,6 +109,8 @@ void main(void) {
   //
   C2000Ware_libraries_init();
 
+  Interrupt_enable(INT_myADCA_2);
+
   //
   // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
   //
@@ -115,12 +119,10 @@ void main(void) {
 
   while (1) {
 
-    compare1 = V_mod_inverter * MAX_COMP;
-    compare2 = -1 * V_mod_inverter * MAX_COMP;
-    // EPWM_setCounterCompareValue(myEPWM5_BASE, EPWM_COUNTER_COMPARE_A,
-    //                             compare1);
-    // EPWM_setCounterCompareValue(myEPWM6_BASE, EPWM_COUNTER_COMPARE_A,
-    //                             compare2);
+    compare1 = ref_mod_inverter * MAX_COMP;
+    compare2 = -1 * ref_mod_inverter * MAX_COMP;
+    EPWM_setCounterCompareValue(myEPWM5_BASE, EPWM_COUNTER_COMPARE_A, compare1);
+    EPWM_setCounterCompareValue(myEPWM6_BASE, EPWM_COUNTER_COMPARE_A, compare2);
   }
 }
 
@@ -128,27 +130,40 @@ interrupt void INT_myCPUTIMER0_ISR() {
   // GPIO_togglePin(LED);
   static uint16_t index = 0;
   static const float step = 2 * PI * SINE_FREQ / ISR_FREQUENCY;
-  V_mod_inverter = sin(step * index);
+  ref_mod_inverter = sin(step * index);
   index++;
   if (index >= (ISR_FREQUENCY / SINE_FREQ))
     index = 0;
 
+  V_mod_inverter = ref_mod_inverter * 0.7;
+
   Interrupt_clearACKGroup(INT_myCPUTIMER0_INTERRUPT_ACK_GROUP);
 }
 
-interrupt void INT_myADCA_1_ISR(void) {
-  static uint16_t *AdcBufPtr = AdcBuf;
-  static volatile uint16_t LED_count = 0;
+interrupt void INT_myADCA_2_ISR(void) {
+  GPIO_togglePin(LED);
+  static uint16_t *AdcBufPtr0 = AdcBuf0;
+  static uint16_t *AdcBufPtr1 = AdcBuf1;
   // Read the ADC Result
-  *AdcBufPtr++ = ADC_readResult(myADCA_RESULT_BASE, myADCA_SOC0);
+  *AdcBufPtr0++ = ADC_readResult(myADCA_RESULT_BASE, myADCA_SOC0);
+  *AdcBufPtr1++ = ADC_readResult(myADCA_RESULT_BASE, myADCA_SOC1);
   // Brute Force the circular buffer
-  if (AdcBufPtr == (AdcBuf + ADC_BUF_LEN)) {
-    AdcBufPtr = AdcBuf;
+  if (AdcBufPtr0 == (AdcBuf0 + ADC_BUF_LEN)) {
+    AdcBufPtr0 = AdcBuf0;
+  }
+  if (AdcBufPtr1 == (AdcBuf1 + ADC_BUF_LEN)) {
+    AdcBufPtr1 = AdcBuf1;
   }
 
   // Clear ADC before clear ACK!!!
-  ADC_clearInterruptStatus(myADCA_BASE, ADC_INT_NUMBER1);
-  Interrupt_clearACKGroup(INT_myADCA_1_INTERRUPT_ACK_GROUP);
+  ADC_clearInterruptStatus(myADCA_BASE, ADC_INT_NUMBER2);
+
+  if (true == ADC_getInterruptOverflowStatus(ADCA_BASE, ADC_INT_NUMBER2)) {
+    ADC_clearInterruptOverflowStatus(myADCA_BASE, ADC_INT_NUMBER2);
+    ADC_clearInterruptStatus(myADCA_BASE, ADC_INT_NUMBER2);
+  }
+
+  Interrupt_clearACKGroup(INT_myADCA_2_INTERRUPT_ACK_GROUP);
 }
 
 //

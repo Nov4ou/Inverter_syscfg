@@ -5,17 +5,17 @@ syscfg/board.obj: syscfg/board.h
 syscfg/board.obj: /Users/nov4ou/workspace_ccstheia/Inverter_syscfg/device/driverlib.h
 syscfg/board.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/inc/hw_memmap.h
 syscfg/board.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/adc.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/stdbool.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/_ti_config.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/linkage.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/stdint.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/_stdint40.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/sys/stdint.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/sys/cdefs.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/sys/_types.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/machine/_types.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/machine/_stdint.h
-syscfg/board.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/sys/_stdint.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/stdbool.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/_ti_config.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/linkage.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/stdint.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/_stdint40.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/sys/stdint.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/sys/cdefs.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/sys/_types.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/machine/_types.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/machine/_stdint.h
+syscfg/board.obj: /Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/sys/_stdint.h
 syscfg/board.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/inc/hw_adc.h
 syscfg/board.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/inc/hw_asysctl.h
 syscfg/board.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/inc/hw_types.h
@@ -109,27 +109,27 @@ syscfg/board.h:
 
 /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/adc.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/stdbool.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/stdbool.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/_ti_config.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/_ti_config.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/linkage.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/linkage.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/stdint.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/stdint.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/_stdint40.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/_stdint40.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/sys/stdint.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/sys/stdint.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/sys/cdefs.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/sys/cdefs.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/sys/_types.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/sys/_types.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/machine/_types.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/machine/_types.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/machine/_stdint.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/machine/_stdint.h:
 
-/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/sys/_stdint.h:
+/Applications/ti/ti-cgt-c2000_22.6.1.LTS/include/sys/_stdint.h:
 
 /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/inc/hw_adc.h:
 

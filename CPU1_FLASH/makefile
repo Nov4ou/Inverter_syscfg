@@ -140,10 +140,9 @@ all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 Inverter_syscfg.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 -Ooff --define=DEBUG --define=_FLASH --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"Inverter_syscfg.map" --heap_size=0x200 --stack_size=0x3F8 --warn_sections -i"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/lib" -i"/Applications/ti/c2000/C2000Ware_5_02_00_00" -i"/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/CPU1_FLASH/syscfg" -i"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include" --reread_libs --define=_FLASH --diag_wrap=off --display_error_number --xml_link_info="Inverter_syscfg_linkInfo.xml" --entry_point=code_start --rom_model -o "Inverter_syscfg.out" $(ORDERED_OBJS)
+	"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 -Ooff --opt_for_speed=0 --fp_mode=strict --define=DEBUG --define=_FLASH --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"Inverter_syscfg.map" --heap_size=0x200 --stack_size=0x3F8 --warn_sections -i"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/lib" -i"/Applications/ti/c2000/C2000Ware_5_02_00_00" -i"/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/CPU1_FLASH/syscfg" -i"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include" --reread_libs --define=_FLASH --diag_wrap=off --display_error_number --xml_link_info="Inverter_syscfg_linkInfo.xml" --entry_point=code_start --rom_model -o "Inverter_syscfg.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
-	@$(MAKE) --no-print-directory post-build
 
 # Other Targets
 clean:
@@ -153,13 +152,6 @@ clean:
 	-$(RM) "device/f28004x_codestartbranch.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
-	-@echo ' '
-
-post-build:
-	-echo "========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) ============="
-	-if 0 == 1  /Applications/ti/ccstheia140/ccs/tools/node/node "/Applications/ti/c2000/C2000Ware_5_02_00_00/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js"  "/Applications/ti/c2000/C2000Ware_5_02_00_00/utilities/clb_tool/clb_syscfg/" "/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/CPU1_FLASH/syscfg" "/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/CPU1_FLASH/syscfg/clb.dot"
-	-if 0 == 1  mkdir "/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/CPU1_FLASH/diagrams"
-	-if 0 == 1  /Applications/ti/ccstheia140/ccs/tools/node/node "/Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/.meta/generate_diagrams.js" "/Applications/ti/c2000/C2000Ware_5_02_00_00" "/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/CPU1_FLASH/diagrams" "/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/CPU1_FLASH/syscfg"
 	-@echo ' '
 
 .PHONY: all clean dependents

@@ -166,16 +166,29 @@ void myADCA_init(){
 	ADC_setupSOC(myADCA_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_EPWM1_SOCA, ADC_CH_ADCIN0, 10U);
 	ADC_setInterruptSOCTrigger(myADCA_BASE, ADC_SOC_NUMBER0, ADC_INT_SOC_TRIGGER_NONE);
 	//
-	// ADC Interrupt 1 Configuration
-	// 		Source	: ADC_SOC_NUMBER0
+	// Start of Conversion 1 Configuration
+	//
+	//
+	// Configures a start-of-conversion (SOC) in the ADC and its interrupt SOC trigger.
+	// 	  	SOC number		: 1
+	//	  	Trigger			: ADC_TRIGGER_EPWM1_SOCA
+	//	  	Channel			: ADC_CH_ADCIN1
+	//	 	Sample Window	: 10 SYSCLK cycles
+	//		Interrupt Trigger: ADC_INT_SOC_TRIGGER_NONE
+	//
+	ADC_setupSOC(myADCA_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_EPWM1_SOCA, ADC_CH_ADCIN1, 10U);
+	ADC_setInterruptSOCTrigger(myADCA_BASE, ADC_SOC_NUMBER1, ADC_INT_SOC_TRIGGER_NONE);
+	//
+	// ADC Interrupt 2 Configuration
+	// 		Source	: ADC_SOC_NUMBER1
 	// 		Interrupt Source: enabled
 	// 		Continuous Mode	: disabled
 	//
 	//
-	ADC_setInterruptSource(myADCA_BASE, ADC_INT_NUMBER1, ADC_SOC_NUMBER0);
-	ADC_clearInterruptStatus(myADCA_BASE, ADC_INT_NUMBER1);
-	ADC_disableContinuousMode(myADCA_BASE, ADC_INT_NUMBER1);
-	ADC_enableInterrupt(myADCA_BASE, ADC_INT_NUMBER1);
+	ADC_setInterruptSource(myADCA_BASE, ADC_INT_NUMBER2, ADC_SOC_NUMBER1);
+	ADC_clearInterruptStatus(myADCA_BASE, ADC_INT_NUMBER2);
+	ADC_disableContinuousMode(myADCA_BASE, ADC_INT_NUMBER2);
+	ADC_enableInterrupt(myADCA_BASE, ADC_INT_NUMBER2);
 }
 
 //*****************************************************************************
@@ -256,6 +269,7 @@ void EPWM_init(){
     EPWM_setFallingEdgeDelayCountShadowLoadMode(myEPWM1_BASE, EPWM_FED_LOAD_ON_CNTR_ZERO);	
     EPWM_disableFallingEdgeDelayCountShadowLoadMode(myEPWM1_BASE);	
     EPWM_enableInterrupt(myEPWM1_BASE);	
+    EPWM_setInterruptSource(myEPWM1_BASE, EPWM_INT_TBCTR_ZERO_OR_PERIOD);	
     EPWM_enableADCTrigger(myEPWM1_BASE, EPWM_SOC_A);	
     EPWM_setADCTriggerSource(myEPWM1_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_ZERO_OR_PERIOD);	
     EPWM_setADCTriggerEventPrescale(myEPWM1_BASE, EPWM_SOC_A, 1);	
@@ -350,9 +364,9 @@ void LED_init(){
 //*****************************************************************************
 void INTERRUPT_init(){
 	
-	// Interrupt Settings for INT_myADCA_1
-	Interrupt_register(INT_myADCA_1, &INT_myADCA_1_ISR);
-	Interrupt_enable(INT_myADCA_1);
+	// Interrupt Settings for INT_myADCA_2
+	Interrupt_register(INT_myADCA_2, &INT_myADCA_2_ISR);
+	Interrupt_enable(INT_myADCA_2);
 	
 	// Interrupt Settings for INT_myCPUTIMER0
 	Interrupt_register(INT_myCPUTIMER0, &INT_myCPUTIMER0_ISR);

@@ -1,8 +1,8 @@
 {
     "interruptInfo" : [
         {
-            "interruptName": "INT_current_adc_1",
-            "interruptHandler": "INT_current_adc_1_ISR"
+            "interruptName": "INT_myADCA_2",
+            "interruptHandler": "INT_myADCA_2_ISR"
         },
         {
             "interruptName": "INT_myCPUTIMER0",

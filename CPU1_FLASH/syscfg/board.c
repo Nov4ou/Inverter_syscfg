@@ -71,48 +71,37 @@ void PinMux_init()
 	//
 	
 	//
-	// EPWM5 -> inverter1 Pinmux
+	// EPWM1 -> myEPWM1 Pinmux
 	//
-	GPIO_setPinConfig(inverter1_EPWMA_PIN_CONFIG);
-	GPIO_setPadConfig(inverter1_EPWMA_GPIO, GPIO_PIN_TYPE_STD);
-	GPIO_setQualificationMode(inverter1_EPWMA_GPIO, GPIO_QUAL_SYNC);
+	GPIO_setPinConfig(myEPWM1_EPWMA_PIN_CONFIG);
+	GPIO_setPadConfig(myEPWM1_EPWMA_GPIO, GPIO_PIN_TYPE_STD);
+	GPIO_setQualificationMode(myEPWM1_EPWMA_GPIO, GPIO_QUAL_SYNC);
 
-	GPIO_setPinConfig(inverter1_EPWMB_PIN_CONFIG);
-	GPIO_setPadConfig(inverter1_EPWMB_GPIO, GPIO_PIN_TYPE_STD);
-	GPIO_setQualificationMode(inverter1_EPWMB_GPIO, GPIO_QUAL_SYNC);
-
-	//
-	// EPWM6 -> inverter2 Pinmux
-	//
-	GPIO_setPinConfig(inverter2_EPWMA_PIN_CONFIG);
-	GPIO_setPadConfig(inverter2_EPWMA_GPIO, GPIO_PIN_TYPE_STD);
-	GPIO_setQualificationMode(inverter2_EPWMA_GPIO, GPIO_QUAL_SYNC);
-
-	GPIO_setPinConfig(inverter2_EPWMB_PIN_CONFIG);
-	GPIO_setPadConfig(inverter2_EPWMB_GPIO, GPIO_PIN_TYPE_STD);
-	GPIO_setQualificationMode(inverter2_EPWMB_GPIO, GPIO_QUAL_SYNC);
+	GPIO_setPinConfig(myEPWM1_EPWMB_PIN_CONFIG);
+	GPIO_setPadConfig(myEPWM1_EPWMB_GPIO, GPIO_PIN_TYPE_STD);
+	GPIO_setQualificationMode(myEPWM1_EPWMB_GPIO, GPIO_QUAL_SYNC);
 
 	//
-	// EPWM1 -> Sync_adc Pinmux
+	// EPWM5 -> myEPWM5 Pinmux
 	//
-	GPIO_setPinConfig(Sync_adc_EPWMA_PIN_CONFIG);
-	GPIO_setPadConfig(Sync_adc_EPWMA_GPIO, GPIO_PIN_TYPE_STD);
-	GPIO_setQualificationMode(Sync_adc_EPWMA_GPIO, GPIO_QUAL_SYNC);
+	GPIO_setPinConfig(myEPWM5_EPWMA_PIN_CONFIG);
+	GPIO_setPadConfig(myEPWM5_EPWMA_GPIO, GPIO_PIN_TYPE_STD);
+	GPIO_setQualificationMode(myEPWM5_EPWMA_GPIO, GPIO_QUAL_SYNC);
 
-	GPIO_setPinConfig(Sync_adc_EPWMB_PIN_CONFIG);
-	GPIO_setPadConfig(Sync_adc_EPWMB_GPIO, GPIO_PIN_TYPE_STD);
-	GPIO_setQualificationMode(Sync_adc_EPWMB_GPIO, GPIO_QUAL_SYNC);
+	GPIO_setPinConfig(myEPWM5_EPWMB_PIN_CONFIG);
+	GPIO_setPadConfig(myEPWM5_EPWMB_GPIO, GPIO_PIN_TYPE_STD);
+	GPIO_setQualificationMode(myEPWM5_EPWMB_GPIO, GPIO_QUAL_SYNC);
 
 	//
-	// EPWM2 -> LPF_Graph Pinmux
+	// EPWM6 -> myEPWM6 Pinmux
 	//
-	GPIO_setPinConfig(LPF_Graph_EPWMA_PIN_CONFIG);
-	GPIO_setPadConfig(LPF_Graph_EPWMA_GPIO, GPIO_PIN_TYPE_STD);
-	GPIO_setQualificationMode(LPF_Graph_EPWMA_GPIO, GPIO_QUAL_SYNC);
+	GPIO_setPinConfig(myEPWM6_EPWMA_PIN_CONFIG);
+	GPIO_setPadConfig(myEPWM6_EPWMA_GPIO, GPIO_PIN_TYPE_STD);
+	GPIO_setQualificationMode(myEPWM6_EPWMA_GPIO, GPIO_QUAL_SYNC);
 
-	GPIO_setPinConfig(LPF_Graph_EPWMB_PIN_CONFIG);
-	GPIO_setPadConfig(LPF_Graph_EPWMB_GPIO, GPIO_PIN_TYPE_STD);
-	GPIO_setQualificationMode(LPF_Graph_EPWMB_GPIO, GPIO_QUAL_SYNC);
+	GPIO_setPinConfig(myEPWM6_EPWMB_PIN_CONFIG);
+	GPIO_setPadConfig(myEPWM6_EPWMB_GPIO, GPIO_PIN_TYPE_STD);
+	GPIO_setQualificationMode(myEPWM6_EPWMB_GPIO, GPIO_QUAL_SYNC);
 
 	// GPIO32 -> LED Pinmux
 	GPIO_setPinConfig(GPIO_32_GPIO32);
@@ -125,10 +114,10 @@ void PinMux_init()
 //
 //*****************************************************************************
 void ADC_init(){
-	current_adc_init();
+	myADCA_init();
 }
 
-void current_adc_init(){
+void myADCA_init(){
 	//
 	// ADC Initialization: Write ADC configurations and power up the ADC
 	//
@@ -136,19 +125,19 @@ void current_adc_init(){
 	// This function sets the analog voltage reference to internal (with the reference voltage of 1.65V or 2.5V) or external for ADC
 	// which is same as ASysCtl APIs.
 	//
-	ADC_setVREF(current_adc_BASE, ADC_REFERENCE_INTERNAL, ADC_REFERENCE_3_3V);
+	ADC_setVREF(myADCA_BASE, ADC_REFERENCE_INTERNAL, ADC_REFERENCE_3_3V);
 	//
 	// Configures the analog-to-digital converter module prescaler.
 	//
-	ADC_setPrescaler(current_adc_BASE, ADC_CLK_DIV_4_0);
+	ADC_setPrescaler(myADCA_BASE, ADC_CLK_DIV_4_0);
 	//
 	// Sets the timing of the end-of-conversion pulse
 	//
-	ADC_setInterruptPulseMode(current_adc_BASE, ADC_PULSE_END_OF_CONV);
+	ADC_setInterruptPulseMode(myADCA_BASE, ADC_PULSE_END_OF_CONV);
 	//
 	// Powers up the analog-to-digital converter core.
 	//
-	ADC_enableConverter(current_adc_BASE);
+	ADC_enableConverter(myADCA_BASE);
 	//
 	// Delay for 1ms to allow ADC time to power up
 	//
@@ -158,11 +147,11 @@ void current_adc_init(){
 	//
 	// Disables SOC burst mode.
 	//
-	ADC_disableBurstMode(current_adc_BASE);
+	ADC_disableBurstMode(myADCA_BASE);
 	//
 	// Sets the priority mode of the SOCs.
 	//
-	ADC_setSOCPriority(current_adc_BASE, ADC_PRI_ALL_ROUND_ROBIN);
+	ADC_setSOCPriority(myADCA_BASE, ADC_PRI_ALL_ROUND_ROBIN);
 	//
 	// Start of Conversion 0 Configuration
 	//
@@ -174,19 +163,32 @@ void current_adc_init(){
 	//	 	Sample Window	: 10 SYSCLK cycles
 	//		Interrupt Trigger: ADC_INT_SOC_TRIGGER_NONE
 	//
-	ADC_setupSOC(current_adc_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_EPWM1_SOCA, ADC_CH_ADCIN0, 10U);
-	ADC_setInterruptSOCTrigger(current_adc_BASE, ADC_SOC_NUMBER0, ADC_INT_SOC_TRIGGER_NONE);
+	ADC_setupSOC(myADCA_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_EPWM1_SOCA, ADC_CH_ADCIN0, 10U);
+	ADC_setInterruptSOCTrigger(myADCA_BASE, ADC_SOC_NUMBER0, ADC_INT_SOC_TRIGGER_NONE);
 	//
-	// ADC Interrupt 1 Configuration
-	// 		Source	: ADC_SOC_NUMBER0
+	// Start of Conversion 1 Configuration
+	//
+	//
+	// Configures a start-of-conversion (SOC) in the ADC and its interrupt SOC trigger.
+	// 	  	SOC number		: 1
+	//	  	Trigger			: ADC_TRIGGER_EPWM1_SOCA
+	//	  	Channel			: ADC_CH_ADCIN1
+	//	 	Sample Window	: 10 SYSCLK cycles
+	//		Interrupt Trigger: ADC_INT_SOC_TRIGGER_NONE
+	//
+	ADC_setupSOC(myADCA_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_EPWM1_SOCA, ADC_CH_ADCIN1, 10U);
+	ADC_setInterruptSOCTrigger(myADCA_BASE, ADC_SOC_NUMBER1, ADC_INT_SOC_TRIGGER_NONE);
+	//
+	// ADC Interrupt 2 Configuration
+	// 		Source	: ADC_SOC_NUMBER1
 	// 		Interrupt Source: enabled
 	// 		Continuous Mode	: disabled
 	//
 	//
-	ADC_setInterruptSource(current_adc_BASE, ADC_INT_NUMBER1, ADC_SOC_NUMBER0);
-	ADC_clearInterruptStatus(current_adc_BASE, ADC_INT_NUMBER1);
-	ADC_disableContinuousMode(current_adc_BASE, ADC_INT_NUMBER1);
-	ADC_enableInterrupt(current_adc_BASE, ADC_INT_NUMBER1);
+	ADC_setInterruptSource(myADCA_BASE, ADC_INT_NUMBER2, ADC_SOC_NUMBER1);
+	ADC_clearInterruptStatus(myADCA_BASE, ADC_INT_NUMBER2);
+	ADC_disableContinuousMode(myADCA_BASE, ADC_INT_NUMBER2);
+	ADC_enableInterrupt(myADCA_BASE, ADC_INT_NUMBER2);
 }
 
 //*****************************************************************************
@@ -237,138 +239,106 @@ void myCPUTIMER0_init(){
 //
 //*****************************************************************************
 void EPWM_init(){
-    EPWM_setClockPrescaler(inverter1_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);	
-    EPWM_setTimeBasePeriod(inverter1_BASE, 5000);	
-    EPWM_setTimeBaseCounter(inverter1_BASE, 0);	
-    EPWM_setTimeBaseCounterMode(inverter1_BASE, EPWM_COUNTER_MODE_UP_DOWN);	
-    EPWM_setCountModeAfterSync(inverter1_BASE, EPWM_COUNT_MODE_UP_AFTER_SYNC);	
-    EPWM_enablePhaseShiftLoad(inverter1_BASE);	
-    EPWM_setPhaseShift(inverter1_BASE, 0);	
-    EPWM_setSyncOutPulseMode(inverter1_BASE, EPWM_SYNC_OUT_PULSE_ON_EPWMxSYNCIN);	
-    EPWM_setCounterCompareValue(inverter1_BASE, EPWM_COUNTER_COMPARE_A, 2500);	
-    EPWM_setCounterCompareShadowLoadMode(inverter1_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
-    EPWM_setCounterCompareValue(inverter1_BASE, EPWM_COUNTER_COMPARE_B, 0);	
-    EPWM_setCounterCompareShadowLoadMode(inverter1_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
-    EPWM_setActionQualifierAction(inverter1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
-    EPWM_setDeadBandDelayPolarity(inverter1_BASE, EPWM_DB_FED, EPWM_DB_POLARITY_ACTIVE_LOW);	
-    EPWM_setDeadBandDelayMode(inverter1_BASE, EPWM_DB_RED, true);	
-    EPWM_setRisingEdgeDelayCountShadowLoadMode(inverter1_BASE, EPWM_RED_LOAD_ON_CNTR_ZERO);	
-    EPWM_disableRisingEdgeDelayCountShadowLoadMode(inverter1_BASE);	
-    EPWM_setRisingEdgeDelayCount(inverter1_BASE, 10);	
-    EPWM_setDeadBandDelayMode(inverter1_BASE, EPWM_DB_FED, true);	
-    EPWM_setFallingEdgeDelayCountShadowLoadMode(inverter1_BASE, EPWM_FED_LOAD_ON_CNTR_ZERO);	
-    EPWM_disableFallingEdgeDelayCountShadowLoadMode(inverter1_BASE);	
-    EPWM_setFallingEdgeDelayCount(inverter1_BASE, 10);	
-    EPWM_setClockPrescaler(inverter2_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);	
-    EPWM_setTimeBasePeriod(inverter2_BASE, 5000);	
-    EPWM_setTimeBaseCounter(inverter2_BASE, 0);	
-    EPWM_setTimeBaseCounterMode(inverter2_BASE, EPWM_COUNTER_MODE_UP_DOWN);	
-    EPWM_setCountModeAfterSync(inverter2_BASE, EPWM_COUNT_MODE_UP_AFTER_SYNC);	
-    EPWM_enablePhaseShiftLoad(inverter2_BASE);	
-    EPWM_setPhaseShift(inverter2_BASE, 0);	
-    EPWM_setSyncOutPulseMode(inverter2_BASE, EPWM_SYNC_OUT_PULSE_ON_EPWMxSYNCIN);	
-    EPWM_setCounterCompareValue(inverter2_BASE, EPWM_COUNTER_COMPARE_A, 2500);	
-    EPWM_setCounterCompareShadowLoadMode(inverter2_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
-    EPWM_setCounterCompareValue(inverter2_BASE, EPWM_COUNTER_COMPARE_B, 0);	
-    EPWM_setCounterCompareShadowLoadMode(inverter2_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
-    EPWM_setActionQualifierAction(inverter2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
-    EPWM_setDeadBandDelayPolarity(inverter2_BASE, EPWM_DB_FED, EPWM_DB_POLARITY_ACTIVE_LOW);	
-    EPWM_setDeadBandDelayMode(inverter2_BASE, EPWM_DB_RED, true);	
-    EPWM_setRisingEdgeDelayCountShadowLoadMode(inverter2_BASE, EPWM_RED_LOAD_ON_CNTR_ZERO);	
-    EPWM_disableRisingEdgeDelayCountShadowLoadMode(inverter2_BASE);	
-    EPWM_setRisingEdgeDelayCount(inverter2_BASE, 10);	
-    EPWM_setDeadBandDelayMode(inverter2_BASE, EPWM_DB_FED, true);	
-    EPWM_setFallingEdgeDelayCountShadowLoadMode(inverter2_BASE, EPWM_FED_LOAD_ON_CNTR_ZERO);	
-    EPWM_disableFallingEdgeDelayCountShadowLoadMode(inverter2_BASE);	
-    EPWM_setFallingEdgeDelayCount(inverter2_BASE, 10);	
-    EPWM_setClockPrescaler(Sync_adc_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);	
-    EPWM_setTimeBasePeriod(Sync_adc_BASE, 5000);	
-    EPWM_setTimeBaseCounter(Sync_adc_BASE, 0);	
-    EPWM_setTimeBaseCounterMode(Sync_adc_BASE, EPWM_COUNTER_MODE_UP_DOWN);	
-    EPWM_disablePhaseShiftLoad(Sync_adc_BASE);	
-    EPWM_setPhaseShift(Sync_adc_BASE, 0);	
-    EPWM_forceSyncPulse(Sync_adc_BASE);	
-    EPWM_setSyncOutPulseMode(Sync_adc_BASE, EPWM_SYNC_OUT_PULSE_ON_EPWMxSYNCIN);	
-    EPWM_setSyncPulseSource(Sync_adc_BASE, HRPWM_PWMSYNC_SOURCE_ZERO);	
-    EPWM_setCounterCompareValue(Sync_adc_BASE, EPWM_COUNTER_COMPARE_A, 2500);	
-    EPWM_setCounterCompareShadowLoadMode(Sync_adc_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
-    EPWM_setCounterCompareValue(Sync_adc_BASE, EPWM_COUNTER_COMPARE_B, 0);	
-    EPWM_setCounterCompareShadowLoadMode(Sync_adc_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
-    EPWM_setActionQualifierAction(Sync_adc_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
-    EPWM_setRisingEdgeDelayCountShadowLoadMode(Sync_adc_BASE, EPWM_RED_LOAD_ON_CNTR_ZERO);	
-    EPWM_disableRisingEdgeDelayCountShadowLoadMode(Sync_adc_BASE);	
-    EPWM_setFallingEdgeDelayCountShadowLoadMode(Sync_adc_BASE, EPWM_FED_LOAD_ON_CNTR_ZERO);	
-    EPWM_disableFallingEdgeDelayCountShadowLoadMode(Sync_adc_BASE);	
-    EPWM_enableInterrupt(Sync_adc_BASE);	
-    EPWM_enableADCTrigger(Sync_adc_BASE, EPWM_SOC_A);	
-    EPWM_setADCTriggerSource(Sync_adc_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_ZERO_OR_PERIOD);	
-    EPWM_setADCTriggerEventPrescale(Sync_adc_BASE, EPWM_SOC_A, 1);	
-    EPWM_setClockPrescaler(LPF_Graph_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);	
-    EPWM_setTimeBasePeriod(LPF_Graph_BASE, 5000);	
-    EPWM_setTimeBaseCounter(LPF_Graph_BASE, 0);	
-    EPWM_setTimeBaseCounterMode(LPF_Graph_BASE, EPWM_COUNTER_MODE_UP_DOWN);	
-    EPWM_setCountModeAfterSync(LPF_Graph_BASE, EPWM_COUNT_MODE_UP_AFTER_SYNC);	
-    EPWM_enablePhaseShiftLoad(LPF_Graph_BASE);	
-    EPWM_setPhaseShift(LPF_Graph_BASE, 0);	
-    EPWM_setSyncOutPulseMode(LPF_Graph_BASE, EPWM_SYNC_OUT_PULSE_ON_EPWMxSYNCIN);	
-    EPWM_setCounterCompareValue(LPF_Graph_BASE, EPWM_COUNTER_COMPARE_A, 2500);	
-    EPWM_setCounterCompareShadowLoadMode(LPF_Graph_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
-    EPWM_setCounterCompareValue(LPF_Graph_BASE, EPWM_COUNTER_COMPARE_B, 0);	
-    EPWM_setCounterCompareShadowLoadMode(LPF_Graph_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
-    EPWM_setActionQualifierAction(LPF_Graph_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
-    EPWM_setDeadBandDelayPolarity(LPF_Graph_BASE, EPWM_DB_FED, EPWM_DB_POLARITY_ACTIVE_LOW);	
-    EPWM_setDeadBandDelayMode(LPF_Graph_BASE, EPWM_DB_RED, true);	
-    EPWM_setRisingEdgeDelayCountShadowLoadMode(LPF_Graph_BASE, EPWM_RED_LOAD_ON_CNTR_ZERO);	
-    EPWM_disableRisingEdgeDelayCountShadowLoadMode(LPF_Graph_BASE);	
-    EPWM_setRisingEdgeDelayCount(LPF_Graph_BASE, 10);	
-    EPWM_setDeadBandDelayMode(LPF_Graph_BASE, EPWM_DB_FED, true);	
-    EPWM_setFallingEdgeDelayCountShadowLoadMode(LPF_Graph_BASE, EPWM_FED_LOAD_ON_CNTR_ZERO);	
-    EPWM_disableFallingEdgeDelayCountShadowLoadMode(LPF_Graph_BASE);	
-    EPWM_setFallingEdgeDelayCount(LPF_Graph_BASE, 10);	
+    EPWM_setClockPrescaler(myEPWM1_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);	
+    EPWM_setTimeBasePeriod(myEPWM1_BASE, 5000);	
+    EPWM_setTimeBaseCounter(myEPWM1_BASE, 0);	
+    EPWM_setTimeBaseCounterMode(myEPWM1_BASE, EPWM_COUNTER_MODE_UP_DOWN);	
+    EPWM_disablePhaseShiftLoad(myEPWM1_BASE);	
+    EPWM_setPhaseShift(myEPWM1_BASE, 0);	
+    EPWM_forceSyncPulse(myEPWM1_BASE);	
+    EPWM_setSyncOutPulseMode(myEPWM1_BASE, EPWM_SYNC_OUT_PULSE_ON_COUNTER_ZERO);	
+    EPWM_setSyncPulseSource(myEPWM1_BASE, HRPWM_PWMSYNC_SOURCE_ZERO);	
+    EPWM_setCounterCompareValue(myEPWM1_BASE, EPWM_COUNTER_COMPARE_A, 2500);	
+    EPWM_setCounterCompareShadowLoadMode(myEPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
+    EPWM_setCounterCompareValue(myEPWM1_BASE, EPWM_COUNTER_COMPARE_B, 0);	
+    EPWM_setCounterCompareShadowLoadMode(myEPWM1_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
+    EPWM_setRisingEdgeDelayCountShadowLoadMode(myEPWM1_BASE, EPWM_RED_LOAD_ON_CNTR_ZERO);	
+    EPWM_disableRisingEdgeDelayCountShadowLoadMode(myEPWM1_BASE);	
+    EPWM_setFallingEdgeDelayCountShadowLoadMode(myEPWM1_BASE, EPWM_FED_LOAD_ON_CNTR_ZERO);	
+    EPWM_disableFallingEdgeDelayCountShadowLoadMode(myEPWM1_BASE);	
+    EPWM_enableInterrupt(myEPWM1_BASE);	
+    EPWM_setInterruptSource(myEPWM1_BASE, EPWM_INT_TBCTR_ZERO_OR_PERIOD);	
+    EPWM_enableADCTrigger(myEPWM1_BASE, EPWM_SOC_A);	
+    EPWM_setADCTriggerSource(myEPWM1_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_ZERO_OR_PERIOD);	
+    EPWM_setADCTriggerEventPrescale(myEPWM1_BASE, EPWM_SOC_A, 1);	
+    EPWM_setClockPrescaler(myEPWM5_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);	
+    EPWM_setTimeBasePeriod(myEPWM5_BASE, 5000);	
+    EPWM_setTimeBaseCounter(myEPWM5_BASE, 0);	
+    EPWM_setTimeBaseCounterMode(myEPWM5_BASE, EPWM_COUNTER_MODE_UP_DOWN);	
+    EPWM_setCountModeAfterSync(myEPWM5_BASE, EPWM_COUNT_MODE_UP_AFTER_SYNC);	
+    EPWM_enablePhaseShiftLoad(myEPWM5_BASE);	
+    EPWM_setPhaseShift(myEPWM5_BASE, 0);	
+    EPWM_setSyncOutPulseMode(myEPWM5_BASE, EPWM_SYNC_OUT_PULSE_ON_EPWMxSYNCIN);	
+    EPWM_setCounterCompareValue(myEPWM5_BASE, EPWM_COUNTER_COMPARE_A, 2500);	
+    EPWM_setCounterCompareShadowLoadMode(myEPWM5_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
+    EPWM_setCounterCompareValue(myEPWM5_BASE, EPWM_COUNTER_COMPARE_B, 0);	
+    EPWM_setCounterCompareShadowLoadMode(myEPWM5_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM5_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
+    EPWM_setDeadBandDelayPolarity(myEPWM5_BASE, EPWM_DB_FED, EPWM_DB_POLARITY_ACTIVE_LOW);	
+    EPWM_setDeadBandDelayMode(myEPWM5_BASE, EPWM_DB_RED, true);	
+    EPWM_setRisingEdgeDelayCountShadowLoadMode(myEPWM5_BASE, EPWM_RED_LOAD_ON_CNTR_ZERO);	
+    EPWM_disableRisingEdgeDelayCountShadowLoadMode(myEPWM5_BASE);	
+    EPWM_setRisingEdgeDelayCount(myEPWM5_BASE, 10);	
+    EPWM_setDeadBandDelayMode(myEPWM5_BASE, EPWM_DB_FED, true);	
+    EPWM_setFallingEdgeDelayCountShadowLoadMode(myEPWM5_BASE, EPWM_FED_LOAD_ON_CNTR_ZERO);	
+    EPWM_disableFallingEdgeDelayCountShadowLoadMode(myEPWM5_BASE);	
+    EPWM_setFallingEdgeDelayCount(myEPWM5_BASE, 10);	
+    EPWM_setClockPrescaler(myEPWM6_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);	
+    EPWM_setTimeBasePeriod(myEPWM6_BASE, 5000);	
+    EPWM_setTimeBaseCounter(myEPWM6_BASE, 0);	
+    EPWM_setTimeBaseCounterMode(myEPWM6_BASE, EPWM_COUNTER_MODE_UP_DOWN);	
+    EPWM_setCountModeAfterSync(myEPWM6_BASE, EPWM_COUNT_MODE_UP_AFTER_SYNC);	
+    EPWM_enablePhaseShiftLoad(myEPWM6_BASE);	
+    EPWM_setPhaseShift(myEPWM6_BASE, 0);	
+    EPWM_setSyncOutPulseMode(myEPWM6_BASE, EPWM_SYNC_OUT_PULSE_ON_EPWMxSYNCIN);	
+    EPWM_setCounterCompareValue(myEPWM6_BASE, EPWM_COUNTER_COMPARE_A, 2500);	
+    EPWM_setCounterCompareShadowLoadMode(myEPWM6_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
+    EPWM_setCounterCompareValue(myEPWM6_BASE, EPWM_COUNTER_COMPARE_B, 0);	
+    EPWM_setCounterCompareShadowLoadMode(myEPWM6_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);	
+    EPWM_setActionQualifierAction(myEPWM6_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_NO_CHANGE, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB);	
+    EPWM_setDeadBandDelayPolarity(myEPWM6_BASE, EPWM_DB_FED, EPWM_DB_POLARITY_ACTIVE_LOW);	
+    EPWM_setDeadBandDelayMode(myEPWM6_BASE, EPWM_DB_RED, true);	
+    EPWM_setRisingEdgeDelayCountShadowLoadMode(myEPWM6_BASE, EPWM_RED_LOAD_ON_CNTR_ZERO);	
+    EPWM_disableRisingEdgeDelayCountShadowLoadMode(myEPWM6_BASE);	
+    EPWM_setRisingEdgeDelayCount(myEPWM6_BASE, 10);	
+    EPWM_setDeadBandDelayMode(myEPWM6_BASE, EPWM_DB_FED, true);	
+    EPWM_setFallingEdgeDelayCountShadowLoadMode(myEPWM6_BASE, EPWM_FED_LOAD_ON_CNTR_ZERO);	
+    EPWM_disableFallingEdgeDelayCountShadowLoadMode(myEPWM6_BASE);	
+    EPWM_setFallingEdgeDelayCount(myEPWM6_BASE, 10);	
 }
 
 //*****************************************************************************
@@ -394,9 +364,9 @@ void LED_init(){
 //*****************************************************************************
 void INTERRUPT_init(){
 	
-	// Interrupt Settings for INT_current_adc_1
-	Interrupt_register(INT_current_adc_1, &INT_current_adc_1_ISR);
-	Interrupt_enable(INT_current_adc_1);
+	// Interrupt Settings for INT_myADCA_2
+	Interrupt_register(INT_myADCA_2, &INT_myADCA_2_ISR);
+	Interrupt_enable(INT_myADCA_2);
 	
 	// Interrupt Settings for INT_myCPUTIMER0
 	Interrupt_register(INT_myCPUTIMER0, &INT_myCPUTIMER0_ISR);

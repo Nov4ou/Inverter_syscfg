@@ -20,7 +20,7 @@ main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverli
 main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/cpu.h
 main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/debug.h
 main.obj: syscfg/board.h
-main.obj: /Users/nov4ou/workspace_ccstheia/Inverter/device/driverlib.h
+main.obj: /Users/nov4ou/workspace_ccstheia/Inverter_syscfg/device/driverlib.h
 main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/asysctl.h
 main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/sysctl.h
 main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/inc/hw_nmi.h
@@ -97,7 +97,7 @@ main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverli
 main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/inc/hw_spi.h
 main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/version.h
 main.obj: /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/driver_inclusive_terminology_mapping.h
-main.obj: /Users/nov4ou/workspace_ccstheia/Inverter/device/device.h
+main.obj: /Users/nov4ou/workspace_ccstheia/Inverter_syscfg/device/device.h
 main.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/stddef.h
 main.obj: syscfg/c2000ware_libraries.h
 main.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/math.h
@@ -144,7 +144,7 @@ main.obj: /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23
 
 syscfg/board.h:
 
-/Users/nov4ou/workspace_ccstheia/Inverter/device/driverlib.h:
+/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/device/driverlib.h:
 
 /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/asysctl.h:
 
@@ -298,7 +298,7 @@ syscfg/board.h:
 
 /Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib/driver_inclusive_terminology_mapping.h:
 
-/Users/nov4ou/workspace_ccstheia/Inverter/device/device.h:
+/Users/nov4ou/workspace_ccstheia/Inverter_syscfg/device/device.h:
 
 /Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include/stddef.h:
 
