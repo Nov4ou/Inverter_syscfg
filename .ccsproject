@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?ccsproject version="1.0"?>
+<projectOptions>
+	<ccsVariant value="50:Theia-based"/>
+	<ccsVersion value="51.4.0"/>
+	<deviceFamily value="C2000"/>
+	<createSlaveProjects value=""/>
+	<templateProperties value="id=empty_driverlib_project.projectspec.empty_driverlib_project"/>
+	<origin value="/Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/examples/empty_projects/CCS/empty_driverlib_project.projectspec"/>
+	<filesToOpen value=""/>
+</projectOptions>

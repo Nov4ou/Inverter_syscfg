@@ -1,0 +1,12 @@
+{
+    "interruptInfo" : [
+        {
+            "interruptName": "INT_current_adc_1",
+            "interruptHandler": "INT_current_adc_1_ISR"
+        },
+        {
+            "interruptName": "INT_myCPUTIMER0",
+            "interruptHandler": "INT_myCPUTIMER0_ISR"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+[
+   {
+      "directory" : "/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH",
+      "command"   : "clang++ -I\"/Users/nov4ou/workspace_ccstheia/Inverter\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00\" -I\"/Users/nov4ou/workspace_ccstheia/Inverter/device\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib\" -I\"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include\" -DDEBUG -D_FLASH -I\"/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH/syscfg\" -DF28004x=1",
+      "file"      : "/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH/syscfg/board.c"
+   },
+   {
+      "directory" : "/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH",
+      "command"   : "clang++ -I\"/Users/nov4ou/workspace_ccstheia/Inverter\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00\" -I\"/Users/nov4ou/workspace_ccstheia/Inverter/device\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib\" -I\"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include\" -DDEBUG -D_FLASH -I\"/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH/syscfg\" -DF28004x=1",
+      "file"      : "/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH/syscfg/c2000ware_libraries.c"
+   },
+   {
+      "directory" : "/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH",
+      "command"   : "clang++ -I\"/Users/nov4ou/workspace_ccstheia/Inverter\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00\" -I\"/Users/nov4ou/workspace_ccstheia/Inverter/device\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib\" -I\"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include\" -DDEBUG -D_FLASH -I\"/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH/syscfg\" -DF28004x=1",
+      "file"      : "/Users/nov4ou/workspace_ccstheia/Inverter/device/device.c"
+   },
+   {
+      "directory" : "/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH",
+      "command"   : "clang++ -I\"/Users/nov4ou/workspace_ccstheia/Inverter\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00\" -I\"/Users/nov4ou/workspace_ccstheia/Inverter/device\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib\" -I\"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include\" -DDEBUG -D_FLASH -I\"/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH/syscfg\" -DF28004x=1",
+      "file"      : "/Users/nov4ou/workspace_ccstheia/Inverter/device/f28004x_codestartbranch.asm"
+   },
+   {
+      "directory" : "/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH",
+      "command"   : "clang++ -I\"/Users/nov4ou/workspace_ccstheia/Inverter\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00\" -I\"/Users/nov4ou/workspace_ccstheia/Inverter/device\" -I\"/Applications/ti/c2000/C2000Ware_5_02_00_00/driverlib/f28004x/driverlib\" -I\"/Applications/ti/ccstheia140/ccs/tools/compiler/ti-cgt-c2000_22.6.1A23259/include\" -DDEBUG -D_FLASH -I\"/Users/nov4ou/workspace_ccstheia/Inverter/CPU1_FLASH/syscfg\" -DF28004x=1",
+      "file"      : "/Users/nov4ou/workspace_ccstheia/Inverter/main.c"
+   }
+]
